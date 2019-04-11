@@ -30,3 +30,5 @@ $router->group(['prefix' => 'episodios', 'middleware' => 'auth'], function () us
     $router->put('{id}', 'EpisodiosController@update');
     $router->delete('{id}', 'EpisodiosController@destroy');
 });
+
+$router->post('/login', 'TokenController@generateToken');

@@ -42,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
                 $token = str_replace('Bearer ', '', $request->header('Authorization'));
                 $decodedData = JWT::decode($token, env('JWT_KEY'), ['HS256']);
 
-                return User::where($decodedData)->first();
+                return User::where(['email' => $decodedData->email])->first();
             } catch (\BadMethodCallException|\UnexpectedValueException $e) {
                 return null;
             }
