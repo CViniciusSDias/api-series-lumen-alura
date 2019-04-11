@@ -13,9 +13,9 @@ abstract class BaseController extends Controller
         return response($this->recuperarModel()::create($request->all()), 201);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->recuperarModel()::all();
+        return $this->recuperarModel()::paginate($request->query('per_page', 10));
     }
 
     public function show(int $id)
